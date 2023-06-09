@@ -1,0 +1,4 @@
+ESCAPE = 'escape'
+SPACE_BAR = 'space'
+
+FRAME_TOLERANCE = 0.001
