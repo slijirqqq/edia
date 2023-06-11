@@ -2,7 +2,9 @@ import uuid
 from tkinter import Tk
 
 from psychopy import gui, visual
+from psychopy.constants import NOT_STARTED
 
+from src.constants import FRAME_TOLERANCE
 from src.utils.meta import SingletonMeta
 from src.utils.mixins import ComponentMixin
 
@@ -40,7 +42,23 @@ class GreetingsDialog(gui.DlgFromDict):
         )
 
 
-class InstructionComponent(visual.TextBox2, ComponentMixin):
+class DefaultComponent(ComponentMixin):
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self._window = MainWindow()
+
+    def check(self, time: float, frame: int, this_flip: float, global_flip: float) -> bool:
+        if self.status == NOT_STARTED and this_flip >= 0. - FRAME_TOLERANCE:
+            self.frame_start = frame
+            self.start_at = time
+            self.start_refresh_at = global_flip
+            self._window.timeOnFlip(self, 'start_refresh_at')
+            self.auto_draw(True)
+        return super().check(time, frame, this_flip, global_flip)
+
+
+class InstructionComponent(DefaultComponent, visual.TextBox2):
 
     def __init__(self, text: str):
         super().__init__(
@@ -50,3 +68,18 @@ class InstructionComponent(visual.TextBox2, ComponentMixin):
             color='white',
             alignment='center',
         )
+
+
+class ImageComponent(DefaultComponent, visual.ImageStim):
+
+    def __init__(self):
+        super().__init__(
+            win=MainWindow(),
+            image='sin',
+            size=(0.5, 0.5),
+            interpolate=True,
+        )
+
+    def disable(self):
+        self.auto_draw(False)
+        self.status = NOT_STARTED

@@ -503,7 +503,7 @@ routineTimer.reset()
 # set up handler to look after randomisation of conditions etc
 trials = data.TrialHandler(nReps=1.0, method='sequential',
                            extraInfo=expInfo, originPath=-1,
-                           trialList=data.importConditions('этап1.xlsx'),
+                           trialList=data.importConditions('src/dist/trial/first_stage.xlsx'),
                            seed=None, name='trials')
 thisExp.addLoop(trials)  # add the loop to the experiment
 thisTrial = trials.trialList[0]  # so we can initialise stimuli with some values
@@ -850,7 +850,7 @@ routineTimer.reset()
 # set up handler to look after randomisation of conditions etc
 question2_4_loop = data.TrialHandler(nReps=1.0, method='sequential',
                                      extraInfo=expInfo, originPath=-1,
-                                     trialList=data.importConditions('test_images.xlsx', selection='0:3'),
+                                     trialList=data.importConditions('src/dist/trial/test_images.xlsx', selection='0:3'),
                                      seed=None, name='question2_4_loop')
 thisExp.addLoop(question2_4_loop)  # add the loop to the experiment
 thisQuestion2_4_loop = question2_4_loop.trialList[0]  # so we can initialise stimuli with some values
@@ -1297,7 +1297,7 @@ routineTimer.reset()
 # set up handler to look after randomisation of conditions etc
 question8_10_loop = data.TrialHandler(nReps=1.0, method='sequential',
                                       extraInfo=expInfo, originPath=-1,
-                                      trialList=data.importConditions('test_images.xlsx', selection='3:6'),
+                                      trialList=data.importConditions('src/dist/trial/test_images.xlsx', selection='3:6'),
                                       seed=None, name='question8_10_loop')
 thisExp.addLoop(question8_10_loop)  # add the loop to the experiment
 thisQuestion8_10_loop = question8_10_loop.trialList[0]  # so we can initialise stimuli with some values
@@ -1458,7 +1458,7 @@ for thisQuestion8_10_loop in question8_10_loop:
 # set up handler to look after randomisation of conditions etc
 question11_16_loop = data.TrialHandler(nReps=1.0, method='sequential',
                                        extraInfo=expInfo, originPath=-1,
-                                       trialList=data.importConditions('test_images.xlsx', selection='6:12'),
+                                       trialList=data.importConditions('src/dist/trial/test_images.xlsx', selection='6:12'),
                                        seed=None, name='question11_16_loop')
 thisExp.addLoop(question11_16_loop)  # add the loop to the experiment
 thisQuestion11_16_loop = question11_16_loop.trialList[0]  # so we can initialise stimuli with some values
@@ -1691,7 +1691,7 @@ routineTimer.reset()
 # set up handler to look after randomisation of conditions etc
 trials_2 = data.TrialHandler(nReps=1.0, method='random',
                              extraInfo=expInfo, originPath=-1,
-                             trialList=data.importConditions('этап3.xlsx', selection='0:36'),
+                             trialList=data.importConditions('src/dist/trial/этап3.xlsx', selection='0:36'),
                              seed=None, name='trials_2')
 thisExp.addLoop(trials_2)  # add the loop to the experiment
 thisTrial_2 = trials_2.trialList[0]  # so we can initialise stimuli with some values
@@ -2056,7 +2056,7 @@ for thisTrial_2 in trials_2:
 # set up handler to look after randomisation of conditions etc
 trials_3 = data.TrialHandler(nReps=1.0, method='random',
                              extraInfo=expInfo, originPath=-1,
-                             trialList=data.importConditions('этап3.xlsx', selection='37:72'),
+                             trialList=data.importConditions('src/dist/trial/этап3.xlsx', selection='37:72'),
                              seed=None, name='trials_3')
 thisExp.addLoop(trials_3)  # add the loop to the experiment
 thisTrial_3 = trials_3.trialList[0]  # so we can initialise stimuli with some values

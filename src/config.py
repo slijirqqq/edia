@@ -23,3 +23,6 @@ class Settings(BaseSettings):
     class Config:
         env_file: tuple[str, str] = '.env', '.env.example'
         env_file_encoding: str = 'utf-8'
+
+
+settings = Settings()
