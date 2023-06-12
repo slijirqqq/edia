@@ -4,9 +4,11 @@ from tkinter import Tk
 from psychopy import gui, visual
 from psychopy.constants import NOT_STARTED
 
+from src.config import settings
 from src.constants import FRAME_TOLERANCE
+from src.models import QuestionChoice
 from src.utils.meta import SingletonMeta
-from src.utils.mixins import ComponentMixin
+from src.utils.mixins import ComponentMixin, ImageComponentMixin
 
 
 class MainWindow(visual.Window, metaclass=SingletonMeta):
@@ -18,9 +20,9 @@ class MainWindow(visual.Window, metaclass=SingletonMeta):
         )
         super().__init__(
             size=size,
-            # fullscr=True,
+            fullscr=True,
             screen=0,
-            color=(0, 0.502, 0.502),
+            color=(0., 0., 0.),
             winType='pyglet',
             allowGUI=False,
             monitor='testMonitor',
@@ -70,7 +72,7 @@ class InstructionComponent(DefaultComponent, visual.TextBox2):
         )
 
 
-class ImageComponent(DefaultComponent, visual.ImageStim):
+class ImageComponent(DefaultComponent, ImageComponentMixin, visual.ImageStim):
 
     def __init__(self):
         super().__init__(
@@ -80,6 +82,75 @@ class ImageComponent(DefaultComponent, visual.ImageStim):
             interpolate=True,
         )
 
-    def disable(self):
-        self.auto_draw(False)
-        self.status = NOT_STARTED
+
+class ChoiceQuestionComponent(DefaultComponent, visual.TextBox2):
+    def __init__(self, text: str, choices: list[QuestionChoice]):
+        super().__init__(
+            win=MainWindow(),
+            text=text,
+            name='question',
+            color='white',
+            alignment='center',
+        )
+        self._choices = choices
+
+
+class TextQuestionComponent(DefaultComponent, visual.TextBox2):
+
+    def __init__(self, text: str):
+        super().__init__(
+            win=MainWindow(),
+            text=text,
+            name='question',
+            color='white',
+            alignment='center',
+            anchor='bottom',
+        )
+
+
+class AnswerQuestionComponent(DefaultComponent, visual.TextBox2):
+    def __init__(self):
+        super().__init__(
+            win=MainWindow(),
+            text='',
+            name='question',
+            color='white',
+            alignment='center',
+            anchor='top',
+            editable=True,
+        )
+
+
+class XImageComponent(DefaultComponent, ImageComponentMixin, visual.ImageStim):
+    def __init__(self):
+        super().__init__(
+            win=MainWindow(),
+            image=str(settings.STATIC_DIR / 'x.png'),
+            size=(1.3, 1.3),
+            interpolate=True,
+            name='x-image',
+        )
+
+
+class RightImageComponent(DefaultComponent, ImageComponentMixin, visual.ImageStim):
+
+    def __init__(self):
+        super().__init__(
+            win=MainWindow(),
+            image='sin',
+            pos=(0.4, 0.),
+            interpolate=True,
+            name='right-image',
+        )
+
+
+class LeftImageComponent(DefaultComponent, ImageComponentMixin, visual.ImageStim):
+
+    def __init__(self):
+        super().__init__(
+            win=MainWindow(),
+            image='sin',
+            pos=(-0.4, 0.),
+            interpolate=True,
+            name='left-image',
+        )

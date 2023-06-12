@@ -59,3 +59,19 @@ class ComponentMixin:
 
     def check(self, time: float, frame: int, this_flip: float, global_flip: float) -> bool:
         return self._continue
+
+
+class RunnerInstructionMixin:
+    def _instruction_step(self):
+        while self._continue:
+            self._update_time()
+            self._continue = self.check(self._instruction)
+            self._continue = self.check(self._keyboard)
+
+            self.flip()
+
+
+class ImageComponentMixin:
+    def disable(self):
+        self.auto_draw(False)
+        self.status = NOT_STARTED

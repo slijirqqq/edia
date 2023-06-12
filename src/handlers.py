@@ -34,3 +34,18 @@ class FirstStageTrial(data.TrialHandler):
             ),
             name='first_stage_trials',
         )
+
+
+class ThirdStageTrial(data.TrialHandler):
+
+    def __init__(self, selection: str = '0:36'):
+        super().__init__(
+            nReps=1.,
+            method=TrialMethod.random.value,
+            originPath=-1,
+            trialList=data.importConditions(
+                str(settings.STATIC_DIR / 'trial' / 'third_stage.xlsx'),
+                selection=selection,
+            ),
+            name='third_stage_trials',
+        )
